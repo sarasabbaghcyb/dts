@@ -31,8 +31,10 @@ export const createTask = async (req: Request, res: Response) => {
     // Create the new task using the task service
     const newTask = await createNewTask({ title, description, status, dueDate });
     console.log(newTask);
+
+    res.status(200).send(newTask);
     // Redirect back to the home page with the new task added
-    res.redirect('/');  // This will trigger the GET / route to refresh the task list
+    // res.redirect('/');  // This will trigger the GET / route to refresh the task list
   } catch (error) {
     console.error('Error creating task:', error);
     res.status(500).send("Failed to create task");

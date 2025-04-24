@@ -10,6 +10,6 @@ taskRouter.get("/", getTasks);
 taskRouter.get("/new", createTaskPage);
 
 // Route for handling the task creation form submission
-taskRouter.post("/new", createTask);
+taskRouter.post("/", createTask);
 
 export default taskRouter;
