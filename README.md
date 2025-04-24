@@ -1,8 +1,4 @@
 
-# librian-worker
-
-This application is part of Librian.ai. It listens to messages on SQS queues and will perform tasks if any are detected.
-
 ## Prerequisites
 
 1. A node version manager, like [nvm](https://formulae.brew.sh/formula/nvm)
