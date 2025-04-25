@@ -1,20 +1,18 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from '../db/client';
+import { Task } from '@prisma/client'; // adjust path as needed
 
-const prisma = new PrismaClient();
-
-export const getAllTasks = async () => {
+export const getAllTasks = async (): Promise<Task[]> => {
   try {
-    const tasks = await prisma.task.findMany();
-    return tasks;
+    return await prisma.task.findMany();
   } catch (error) {
-    console.error('Error fetching tasks:', error);
+    console.error("Error fetching tasks:", error);
     throw new Error('Error fetching tasks');
   }
 };
 
 export const createNewTask = async (taskData: { title: string, description: string, status: string, dueDate: string }) => {
   try {
-    const newTask = await prisma.task.create({
+    return await prisma.task.create({
       data: {
         title: taskData.title,
         description: taskData.description,
@@ -22,7 +20,6 @@ export const createNewTask = async (taskData: { title: string, description: stri
         dueDate: new Date(taskData.dueDate),
       },
     });
-    return newTask;
   } catch (error) {
     console.error('Error creating task:', error);
     throw new Error('Error creating task');
@@ -34,7 +31,7 @@ export const updateTaskById = async (
   data: { title: string, description: string, status: string, dueDate: string }
 ) => {
   try {
-    const updatedTask = await prisma.task.update({
+    return await prisma.task.update({
       where: { id },
       data: {
         title: data.title,
@@ -43,8 +40,6 @@ export const updateTaskById = async (
         dueDate: new Date(data.dueDate),
       },
     });
-
-    return updatedTask;
   } catch (error) {
     console.error(`Error updating task with id ${id}:`, error);
     throw new Error('Error updating task');
@@ -61,4 +56,3 @@ export const deleteTaskById = async (id: number) => {
     throw new Error('Error deleting task');
   }
 };
-

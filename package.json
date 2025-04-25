@@ -19,7 +19,7 @@
     "@eslint/js": "^9.11.1",
     "@jest/globals": "^29.7.0",
     "@types/express": "^5.0.1",
-    "@types/jest": "^29.5.6",
+    "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^8.29.0",
     "@typescript-eslint/parser": "^8.28.0",
     "babel-jest": "^29.7.0",
@@ -32,6 +32,8 @@
     "jest-mock-extended": "^3.0.5",
     "prettier": "^3.0.3",
     "prisma": "^6.6.0",
+    "supertest": "^7.1.0",
+    "ts-jest": "^29.3.2",
     "typescript": "^5.6.2"
   },
   "dependencies": {
@@ -40,5 +42,6 @@
     "express": "^5.1.0",
     "express-winston": "^4.2.0",
     "winston": "^3.17.0"
-  }
+  },
+  "packageManager": "yarn@4.5.3+sha512.3003a14012e2987072d244c720506549c1aab73ee728208f1b2580a9fd67b92d61ba6b08fe93f6dce68fd771e3af1e59a0afa28dd242dd0940d73b95fedd4e90"
 }

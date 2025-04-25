@@ -10,6 +10,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "resolveJsonModule": true,
+    "isolatedModules": true,
 
     /* Strict Type-Checking Options */
     "strict": true,
