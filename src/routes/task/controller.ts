@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getAllTasks, createNewTask } from "../../services/task-service";
+import { getAllTasks, createNewTask, updateTaskById } from "../../services/task-service";
 
 // Display all tasks
 export const getTasks = async (req: Request, res: Response) => {
@@ -38,5 +38,19 @@ export const createTask = async (req: Request, res: Response) => {
   } catch (error) {
     console.error('Error creating task:', error);
     res.status(500).send("Failed to create task");
+  }
+};
+
+export const updateTask = async (req: Request, res: Response) => {
+  const taskId = Number(req.params.id);
+  const { title, description, status, dueDate } = req.body;
+
+  try {
+    const updatedTask = await updateTaskById(taskId, { title, description, status, dueDate });
+    console.log(updatedTask);
+    res.status(200).json(updatedTask); // Or redirect if desired
+  } catch (error) {
+    console.error("Error updating task:", error);
+    res.status(500).send("Failed to update task");
   }
 };

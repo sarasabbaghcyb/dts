@@ -1,5 +1,5 @@
 import express from "express";
-import { getTasks, createTaskPage, createTask } from "./controller";
+import { getTasks, createTaskPage, createTask, updateTask } from "./controller";
 
 const taskRouter = express.Router();
 
@@ -11,5 +11,8 @@ taskRouter.get("/new", createTaskPage);
 
 // Route for handling the task creation form submission
 taskRouter.post("/", createTask);
+
+taskRouter.put("/:id", updateTask);
+
 
 export default taskRouter;

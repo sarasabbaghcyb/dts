@@ -30,3 +30,26 @@ export const createNewTask = async (taskData: { title: string, description: stri
     throw new Error('Error creating task');
   }
 };
+
+export const updateTaskById = async (
+  id: number,
+  data: { title: string, description: string, status: string, dueDate: string }
+) => {
+  try {
+    const updatedTask = await prisma.task.update({
+      where: { id },
+      data: {
+        title: data.title,
+        description: data.description,
+        status: data.status,
+        dueDate: new Date(data.dueDate),
+      },
+    });
+
+    return updatedTask;
+  } catch (error) {
+    console.error(`Error updating task with id ${id}:`, error);
+    throw new Error('Error updating task');
+  }
+};
+
