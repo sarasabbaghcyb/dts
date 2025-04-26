@@ -36,12 +36,11 @@ describe('Task Service', () => {
 
       const result = await getAllTasks();
 
-      expect(result).toEqual(tasks); // Assert the result
-      expect(prisma.task.findMany).toHaveBeenCalledTimes(1); // Ensure findMany was called once
+      expect(result).toEqual(tasks);
+      expect(prisma.task.findMany).toHaveBeenCalledTimes(1);
     });
 
     it('should throw an error when fetching tasks fails', async () => {
-      // Mocking rejection to simulate failure
       (prisma.task.findMany as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
 
       await expect(getAllTasks()).rejects.toThrow('Error fetching tasks');
@@ -63,13 +62,12 @@ describe('Task Service', () => {
         createdAt: new Date(),
       };
 
-      // Mocking `create` to return created task
       (prisma.task.create as jest.Mock).mockResolvedValue(createdTask);
 
       const result = await createNewTask(newTaskData);
 
-      expect(result).toEqual(createdTask); // Assert the result
-      expect(prisma.task.create).toHaveBeenCalledTimes(1); // Ensure create was called once
+      expect(result).toEqual(createdTask);
+      expect(prisma.task.create).toHaveBeenCalledTimes(1);
     });
 
     it('should throw an error when creating a new task fails', async () => {
@@ -80,7 +78,6 @@ describe('Task Service', () => {
         dueDate: new Date('2023-12-31'),
       };
 
-      // Mocking rejection to simulate failure
       (prisma.task.create as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
 
       await expect(createNewTask(newTaskData)).rejects.toThrow('Error creating task');
@@ -102,13 +99,12 @@ describe('Task Service', () => {
         createdAt: new Date(),
       };
 
-      // Mocking `update` to return updated task
       (prisma.task.update as jest.Mock).mockResolvedValue(updatedTask);
 
       const result = await updateTaskById(1, updatedTaskData);
 
-      expect(result).toEqual(updatedTask); // Assert the result
-      expect(prisma.task.update).toHaveBeenCalledTimes(1); // Ensure update was called once
+      expect(result).toEqual(updatedTask);
+      expect(prisma.task.update).toHaveBeenCalledTimes(1);
     });
 
     it('should throw an error when updating a task fails', async () => {
@@ -119,7 +115,6 @@ describe('Task Service', () => {
         dueDate: new Date('2023-12-31'),
       };
 
-      // Mocking rejection to simulate failure
       (prisma.task.update as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
 
       await expect(updateTaskById(1, updatedTaskData)).rejects.toThrow('Error updating task');
@@ -128,15 +123,13 @@ describe('Task Service', () => {
 
   describe('deleteTaskById', () => {
     it('should delete an existing task successfully', async () => {
-      // Mocking `delete` to resolve successfully
       (prisma.task.delete as jest.Mock).mockResolvedValue(undefined);
 
       await expect(deleteTaskById(1)).resolves.toBeUndefined();
-      expect(prisma.task.delete).toHaveBeenCalledTimes(1); // Ensure delete was called once
+      expect(prisma.task.delete).toHaveBeenCalledTimes(1);
     });
 
     it('should throw an error when deleting a task fails', async () => {
-      // Mocking rejection to simulate failure
       (prisma.task.delete as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
 
       await expect(deleteTaskById(1)).rejects.toThrow('Error deleting task');
